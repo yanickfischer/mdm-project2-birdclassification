@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Bird Classification – MDM Projekt 2</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" async></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron text-center bg-info text-white">
+            <h1 class="display-4">🐦 Vogelarten-Klassifizierung</h1>
+            <p class="lead">KI erkennt die Vogelart anhand eines Fotos.</p>
+            <p class="lead">MDM Project 2 @ ZHAW by Yanick Fischer – fischya3@students.zhaw.ch</p>
+        </div>
+
+        <div id="drop-area" class="border p-4 text-center bg-light">
+            <p>Datei hierher ziehen oder klicken zum Hochladen (JPEG, PNG)</p>
+            <input type="file" id="imageUpload" accept="image/*" hidden />
+            <button type="button" class="btn btn-primary" onclick="document.getElementById('imageUpload').click();">Datei auswählen</button>
+        </div>
+
+        <div id="loadingPart" class="text-center my-4" style="display: none;">
+            <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTJ5b3kzY2p6aTZuODUzN2ZjamUxMjRmMnZ0dDJucmxpbWV0aGtlaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3oKIPwQh3REDHusotW/giphy.gif" alt="Loading calming Bird" class="mb-3" style="max-height: 200px;" />
+            <div class="spinner-border text-primary" role="status">
+                <span class="sr-only">Analyse läuft...</span>
+            </div>
+            <p class="mt-2">🐦 Bild wird analysiert...</p>
+        </div>
+
+
+        <div id="answerPart" style="visibility: hidden;">
+            <div class="card shadow rounded mt-4">
+                <div class="card-body">
+                    <h5 class="card-title">📊 Ergebnis:</h5>
+                    <div id="answer" class="card-text"></div>
+                </div>
+            </div>
+
+            <div class="card mt-3 shadow rounded" id="previewPart">
+                <div class="card-body text-center">
+                    <h5 class="card-title">🖼️ Hochgeladenes Bild:</h5>
+                    <img id="preview" class="img-thumbnail rounded" src="#" alt="Bildvorschau" />
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

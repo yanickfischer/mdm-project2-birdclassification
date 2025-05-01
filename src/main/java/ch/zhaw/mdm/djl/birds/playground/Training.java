@@ -3,6 +3,8 @@ package ch.zhaw.mdm.djl.birds.playground;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.Files;
+import java.nio.charset.StandardCharsets;
 
 import ai.djl.Model;
 import ai.djl.basicdataset.cv.classification.ImageFolder;
@@ -50,6 +52,16 @@ public final class Training {
         EasyTrain.fit(trainer, EPOCHS, datasets[0], datasets[1]);
 
         TrainingResult result = trainer.getTrainingResult();
+
+        float trainAccuracy = result.getTrainEvaluation("Accuracy");
+        float validateAccuracy = result.getValidateEvaluation("Accuracy");
+
+        String json = String.format("{\"trainAccuracy\": %.4f, \"validateAccuracy\": %.4f}",
+            trainAccuracy, validateAccuracy);
+
+        Path resultPath = Paths.get("src/main/resources/static/models/training-result.json");
+        Files.write(resultPath, json.getBytes(StandardCharsets.UTF_8));
+
         model.setProperty("Epoch", String.valueOf(EPOCHS));
         model.setProperty(
                 "Accuracy", String.format("%.5f", result.getValidateEvaluation("Accuracy")));

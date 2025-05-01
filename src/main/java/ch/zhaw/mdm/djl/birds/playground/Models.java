@@ -28,7 +28,7 @@ public final class Models {
 
     public static Model getModel() {
 
-        Model model = Model.newInstance(MODEL_NAME);
+        Model model = Model.newInstance(MODEL_NAME, "PyTorch");
 
 
         Block resNet50 =

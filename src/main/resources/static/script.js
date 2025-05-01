@@ -76,3 +76,12 @@ function formatClassNames(data) {
     });
     return html;
 }
+
+// Dynamische Platzhalteranzeige für Accuracy-Werte
+window.addEventListener('DOMContentLoaded', () => {
+    const trainAccElement = document.getElementById('train-acc');
+    const valAccElement = document.getElementById('val-acc');
+
+    if (trainAccElement) trainAccElement.innerText = "TBD";
+    if (valAccElement) valAccElement.innerText = "TBD";
+});

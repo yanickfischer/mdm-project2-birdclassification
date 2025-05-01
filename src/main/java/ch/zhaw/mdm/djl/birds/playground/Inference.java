@@ -40,7 +40,7 @@ public class Inference {
             predictor = model.newPredictor(translator);
     
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException("Fehler beim Initialisieren des Modells. Wurde der Ordner 'models/' im Docker-Image eingebunden?", e);
         }
     }
 
@@ -48,6 +48,10 @@ public class Inference {
         InputStream is = new ByteArrayInputStream(image);
         BufferedImage bi = ImageIO.read(is);
         Image img = ImageFactory.getInstance().fromImage(bi);
+
+        if (predictor == null) {
+            throw new IllegalStateException("Predictor ist null – Modell wurde nicht geladen.");
+        }
 
         Classifications predictResult = this.predictor.predict(img);
         return predictResult;

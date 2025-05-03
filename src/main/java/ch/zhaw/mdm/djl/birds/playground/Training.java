@@ -25,7 +25,7 @@ import ai.djl.translate.TranslateException;
 
 public final class Training {
 
-    private static final int BATCH_SIZE = 32;
+    private static final int BATCH_SIZE = 20;
 
     private static final int EPOCHS = 20;
 

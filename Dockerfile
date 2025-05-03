@@ -6,6 +6,7 @@
     
     # Copy source code + Maven wrapper
     COPY . .
+    RUN mkdir -p models
     COPY models/ models/
     
     # Grant execution permission
@@ -24,8 +25,8 @@
     # Copy models directory from build stage
     COPY --from=build /app/models /app/models
 
-    # Copy the built jar from the build stage
-    COPY --from=build /app/target/playground-0.0.1-SNAPSHOT.jar app.jar
+    # Copy the built jar from the build stage (robust for name changes)
+    COPY --from=build /app/target/*.jar app.jar
     
     # Expose port 8080 for Spring Boot
     EXPOSE 8080

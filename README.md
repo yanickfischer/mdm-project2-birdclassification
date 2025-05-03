@@ -29,6 +29,8 @@ Ziel dieses Projekts ist es, ein vollständiges Machine-Learning-System zu entwi
 - **ML-Modell:** ResNet50 (pretrained, fine-tuned)
 - **Daten:** [Caltech-UCSD Birds 200-2011 Dataset](https://www.vision.caltech.edu/datasets/cub_200_2011/)
 - **Build & Deployment:** Maven, Docker, Azure, GitHub Actions (geplant)
+- **Training & Evaluation:** 20 Epochen, Transformation mit Resize, CenterCrop und Normalize
+- **Modellquelle:** ResNet50 aus dem Model Zoo der Deep Java Library (DJL)
 
 ---
 
@@ -47,6 +49,29 @@ Ziel dieses Projekts ist es, ein vollständiges Machine-Learning-System zu entwi
    - Zeigt die Top-Klassen mit Prozentwerten als Fortschrittsbalken.
    - Zeigt zusätzlich Projektinformationen und aktuelle Modellgenauigkeit an (dynamisch aus JSON-Datei).
 
+4. **Deployment:**
+   - Die Anwendung wird als Docker-Image gebaut und zu Docker Hub gepusht:
+     ```bash
+     docker buildx build --platform linux/amd64 -t yanickpfischer/mdm-birdclassification:latest --push .
+     ```
+   - Danach wird sie auf Azure App Service als Linux-Container bereitgestellt:
+     ```bash
+     az group create --name mdm-p2-bird-rg --location westeurope
+     az appservice plan create --name mdm-p2-bird-plan --resource-group mdm-p2-bird-rg --sku F1 --is-linux
+     az webapp create --resource-group mdm-p2-bird-rg --plan mdm-p2-bird-plan --name mdm-p2-bird-app --deployment-container-image-name yanickpfischer/mdm-birdclassification:latest
+     az webapp config appsettings set --resource-group mdm-p2-bird-rg --name mdm-p2-bird-app --settings WEBSITES_PORT=8080
+     ```
+
+   - Die App ist öffentlich erreichbar unter: [https://mdm-p2-bird-app.azurewebsites.net](https://mdm-p2-bird-app.azurewebsites.net)
+
 ---
 
 ## 📁 Projektstruktur
+
+Die wichtigsten Bestandteile des Projekts sind:
+
+- `src/main/java`: Enthält die Java-Klassen für Training (`Training.java`), Inference (`Inference.java`) und REST-Controller (`ClassificationController.java`).
+- `src/main/resources/models`: Hier liegt das trainierte Modell (`.params`-Datei) und die `synset.txt`.
+- `src/main/resources/static`: Frontend (HTML/JS-Dateien).
+- `Dockerfile`: Container-Builddefinition für Deployment auf Azure.
+- `training-results.json`: Speichert Trainingsmetriken für Anzeige im Frontend.

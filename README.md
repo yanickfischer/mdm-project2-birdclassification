@@ -69,10 +69,15 @@ Ziel dieses Projekts ist es, ein vollständiges Machine-Learning-System zu entwi
 
 ## 📁 Projektstruktur
 
-Die wichtigsten Bestandteile des Projekts sind:
+Das Projekt folgt einer klassischen Full-Stack-Architektur mit Java Spring Boot Backend, einem Web-Frontend sowie ML-Komponenten (Training & Inference) auf Basis der DJL.
 
-- `src/main/java`: Enthält die Java-Klassen für Training (`Training.java`), Inference (`Inference.java`) und REST-Controller (`ClassificationController.java`).
-- `src/main/resources/models`: Hier liegt das trainierte Modell (`.params`-Datei) und die `synset.txt`.
-- `src/main/resources/static`: Frontend (HTML/JS-Dateien).
-- `Dockerfile`: Container-Builddefinition für Deployment auf Azure.
-- `training-results.json`: Speichert Trainingsmetriken für Anzeige im Frontend.
+- `src/main/java/ch/zhaw/mdm/djl/birds/playground/`
+  - `Training.java` – Trainingslogik mit DJL
+  - `Inference.java` – Modellinferenz aus REST-Anfragen
+  - `ClassificationController.java` – REST-Endpunkt für Datei-Upload und Prediction
+  - `Models.java` – Laden und Konfiguration des Modells
+- `src/main/resources/models/` – Enthält das trainierte Modell (`.params`) sowie die `synset.txt` mit den Labelnamen
+- `src/main/resources/static/` – HTML, JavaScript und CSS für das interaktive Frontend
+- `training-results.json` – Ausgabe des Trainings (Train/Val Accuracy & Loss)
+- `Dockerfile` – Containerisierung für lokales Deployment und Azure Web App
+- `README.md` – Projektdokumentation (diese Datei)

@@ -37,17 +37,18 @@ Ziel dieses Projekts ist es, ein vollständiges Machine-Learning-System zu entwi
 ## ⚙️ Funktionsweise
 
 1. **Training:**
-   - Das Modell wird auf einem reduzierten Subset (20 Klassen) des CUB-Datasets trainiert.
-   - Die Trainingsgenauigkeit und Validierungsgenauigkeit werden nach dem Training automatisch in einer JSON-Datei (`training-result.json`) gespeichert.
+   - Das Modell wird auf einem reduzierten Subset (20 Klassen) des CUB-Datasets (200 Klassen total) trainiert
+   - Die Trainingsgenauigkeit und Validierungsgenauigkeit werden nach dem Training automatisch in einer JSON-Datei (`training-result.json`) gespeichert
+   - Das Model kann ganz einfach auf die totalen 200 Klassen erweitert werden, benötigt aber einiges an Compute (lokal auf Laptopo cirka 30h)
 
 2. **Inference (Vorhersage):**
-   - Der Benutzer lädt ein Vogelbild im Browser hoch.
-   - Das Bild wird per REST-API an das Spring Boot Backend gesendet.
-   - Das Modell analysiert das Bild und liefert die wahrscheinlichste Vogelart zurück.
+   - Der Benutzer lädt ein Vogelbild im Browser hoch
+   - Das Bild wird per REST-API an das Spring Boot Backend gesendet
+   - Das Modell analysiert das Bild und liefert die wahrscheinlichste Vogelart zurück
 
 3. **Frontend:**
-   - Zeigt die Top-Klassen mit Prozentwerten als Fortschrittsbalken.
-   - Zeigt zusätzlich Projektinformationen und aktuelle Modellgenauigkeit an (dynamisch aus JSON-Datei).
+   - Zeigt die Top-Klassen mit Prozentwerten als Fortschrittsbalken
+   - Zeigt zusätzlich Projektinformationen und aktuelle Modellgenauigkeit an (dynamisch aus JSON-Datei)
 
 4. **Deployment:**
    - Die Anwendung wird als Docker-Image gebaut und zu Docker Hub gepusht:

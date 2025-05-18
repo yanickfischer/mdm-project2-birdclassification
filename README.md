@@ -7,8 +7,10 @@ Entwickelt im Rahmen des Moduls *Model Deployment & Maintenance (MDM)* an der ZH
 **E-Mail:** fischya3@students.zhaw.ch  
 **GitHub:** [Projekt-Repository](https://github.com/yanickfischer/mdm-project2-birdclassification)
 
+
 ## Projekt-Vorstellung als Video
-[![Projektvorstellung](images/Bird.png)](https://www.youtube.com/watch?v=3iyT_f4QTYM)
+[![Bird](https://github.com/user-attachments/assets/598f2c80-0440-4e33-84af-badb92b070d6)](https://www.youtube.com/watch?v=3iyT_f4QTYM)
+
 ---
 
 ## 🔍 Projektübersicht
